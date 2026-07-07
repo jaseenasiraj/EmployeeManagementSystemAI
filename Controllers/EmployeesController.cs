@@ -58,16 +58,19 @@ namespace EmployeeManagementSystemAI.Controllers
             _mapper.Map(request, existing);
 
             var updated = await _repo.UpdateAsync(existing);
-
-            return Ok(updated);
+            var response = _mapper.Map<EmployeeResponseDto>(updated);
+            return Ok(response);
         }
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteEmployee(int id)
         {
-            var result=  await _repo.DeleteAsync(id);
-            if(!result)
+            var result = await _repo.DeleteAsync(id);
+
+            if (!result)
                 return NotFound();
-            return Ok(result);
+
+            return NoContent();
+            
 
         }
 

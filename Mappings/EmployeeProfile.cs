@@ -10,7 +10,8 @@ namespace EmployeeManagementSystemAI.Mappings
         {
             CreateMap<CreateEmployeeRequestDto, Employee>();
             CreateMap<Employee, EmployeeResponseDto>();
-            CreateMap<UpdateEmployeeRequestDto, Employee>();
+            CreateMap<UpdateEmployeeRequestDto, Employee>()
+               .ForMember(dest => dest.Id, opt => opt.Ignore());
         }
     }
 }
